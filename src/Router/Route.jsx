@@ -5,24 +5,25 @@ import Favorites from "../components/Favorites/Favorites";
 import Login from "../components/Login/Login";
 
 const router = createBrowserRouter([
-    {
-        path:'/',
-        element:<MainLayout></MainLayout>,
-        children:[
-            {
-                path:'/',
-                element:<Home></Home>
-            },
-            {
-                path:'/favorites',
-                element:<Favorites></Favorites>
-            },
-            {
-                path:'/login',
-                element:<Login></Login>
-            }
-        ]
-    }
-])
+  {
+    path: "/",
+    element: <MainLayout></MainLayout>,
+    children: [
+      {
+        path: "/",
+        element: <Home></Home>,
+        loader: () => fetch("/phones.json"),
+      },
+      {
+        path: "/favorites",
+        element: <Favorites></Favorites>,
+      },
+      {
+        path: "/login",
+        element: <Login></Login>,
+      },
+    ],
+  },
+]);
 
 export default router;
