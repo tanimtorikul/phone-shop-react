@@ -1,5 +1,7 @@
-import React from "react";
+
 import { Link } from "react-router-dom";
+import Swal from "sweetalert2";
+
 
 const PhoneCard = ({ phone }) => {
   const { image, id, phone_name, brand_name, description, price } = phone;
@@ -9,15 +11,27 @@ const PhoneCard = ({ phone }) => {
     if (!cartItems) {
       addedCartArray.push(phone);
       localStorage.setItem("cart", JSON.stringify(addedCartArray));
-      alert("added");
+      Swal.fire(
+        'Good job!',
+        'You clicked the button!',
+        'success'
+      )
     } else {
       const isExist = cartItems.find((phone) => phone.id === id);
       if (!isExist) {
         addedCartArray.push(...cartItems, phone);
         localStorage.setItem("cart", JSON.stringify(addedCartArray));
-        alert("added");
+        Swal.fire(
+            'Good job!',
+            'You have added this to cart',
+            'success'
+          )
       } else {
-        alert("already added");
+        Swal.fire({
+            icon: 'error',
+            title: 'Sorry...',
+            text: "You can't buy more than 1 phone!"
+          })
       }
     }
   };

@@ -7,6 +7,7 @@ import ErrorPage from "../components/ErrorPage/ErrorPage";
 import Shop from "../components/Shop/Shop";
 import Phone from "../components/Phone/Phone";
 
+
 const router = createBrowserRouter([
   {
     path: "/",
