@@ -5,16 +5,20 @@ const PhoneCard = ({ phone }) => {
   const { image, id, phone_name, brand_name, description, price } = phone;
   const handleAddToCart = () => {
     const addedCartArray = [];
-    const cartItem = JSON.parse(localStorage.getItem("cart"));
-    if (!cartItem) {
+    const cartItems = JSON.parse(localStorage.getItem("cart"));
+    if (!cartItems) {
       addedCartArray.push(phone);
       localStorage.setItem("cart", JSON.stringify(addedCartArray));
-      alert('added')
-    } 
-    else {
-      addedCartArray.push(...cartItem, phone);
-      localStorage.setItem("cart", JSON.stringify(addedCartArray));
-      alert('added')
+      alert("added");
+    } else {
+      const isExist = cartItems.find((phone) => phone.id === id);
+      if (!isExist) {
+        addedCartArray.push(...cartItems, phone);
+        localStorage.setItem("cart", JSON.stringify(addedCartArray));
+        alert("added");
+      } else {
+        alert("already added");
+      }
     }
   };
   return (
